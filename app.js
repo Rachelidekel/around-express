@@ -4,7 +4,7 @@ const app = express();
 const helmet = require('helmet');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
-const indexRouter = require('./routes/indes');
+const indexRouter = require('./routes/index');
 
 const { PORT = 3000 } = process.env;
 
