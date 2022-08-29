@@ -6,4 +6,4 @@ const getDataFromFile = (pathToFile) =>
     .then((data) => JSON.parse(data))
     .catch((err) => err);
 
-module.exports = getDataFromFile;
+//module.exports = getDataFromFile;
