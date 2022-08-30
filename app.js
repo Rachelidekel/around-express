@@ -11,12 +11,13 @@ const indexRouter = require('./routes/index');
 const { PORT = 3000 } = process.env;
 
 app.use(helmet());
+app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/aroundb')
+mongoose.connect('mongodb://localhost:27017/aroundb');
 
 app.use((req, res, next) => {
-req.user = {_id:'5d8b8592978f8bd833ca8133'};
-next();
+  req.user = { _id: '630ce8753a99444882d64fe9' };
+  next();
 });
 
 app.use('/users', usersRouter);
