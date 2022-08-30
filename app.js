@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const { PORT = 3000 } = process.env;
 
 app.use(helmet());
+
 app.use(express.json());
 
 mongoose.connect('mongodb://localhost:27017/aroundb');
