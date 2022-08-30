@@ -31,12 +31,12 @@ const deleteCard = (req, res) => {
       error.statusCode = 404;
       throw error;
     })
-    .then((card) => card.deleteOne(card).then(() => res.send({ data: card })))
+    .then((card) => Card.deleteOne(card).then(() => res.send({ data: card })))
     .catch((err) => {
       if (err.name === 'CastError') {
         res.status(400).send({ message: 'Invalid card id' });
       } else if (err.statusCode === 404) {
-        res.status(400).send({ message: err.message });
+        res.status(404).send({ message: err.message });
       } else {
         res.status(500).send({ message: 'An error has occured' });
       }
@@ -49,18 +49,20 @@ const updateLike = (req, res, method) => {
     id,
     { [method]: { likes: req.user._id } },
     { new: true }
-  );
-  orFail(() => {
-    const error = new Error('No card found with that id');
-    error.statusCode = 404;
-    throw error;
-  })
-    .then((card) => card.deleteOne(card).then(() => res.send({ data: card })))
+  )
+    .orFail(() => {
+      const error = new Error('No card found with this id');
+      error.statusCode = 404;
+      throw error;
+    })
+    .then((card) => {
+      res.send({ data: card });
+    })
     .catch((err) => {
       if (err.name === 'CastError') {
         res.status(400).send({ message: 'Invalid card id' });
       } else if (err.statusCode === 404) {
-        res.status(400).send({ message: err.message });
+        res.status(404).send({ message: err.message });
       } else {
         res.status(500).send({ message: 'An error has occured' });
       }

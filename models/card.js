@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//const validator = require('validator');
 const urlRegex = require('../utils/regex');
 
 const cardSchema = new mongoose.Schema(
@@ -24,7 +23,7 @@ const cardSchema = new mongoose.Schema(
       required: true,
     },
     likes: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: 'user',
       default: [],
     },

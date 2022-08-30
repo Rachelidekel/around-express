@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 const indexRouter = require('./routes/index');
-//const { use } = require('./routes/users');
 
 const { PORT = 3000 } = process.env;
 

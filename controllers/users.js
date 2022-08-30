@@ -17,14 +17,15 @@ const createUser = (req, res) => {
     });
 };
 
-const getUsers = (req, res) =>
+const getUsers = (req, res) => {
   User.find({})
     .then((users) => res.status(200).send({ data: users }))
     .catch((err) => res.status(500).send(err));
+};
 
-const getUserId = (req, res) =>
-  User.findById(req.params.id)
-    .then((users) => users.find((user) => user._id === req.params.user_id))
+const getUserId = (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
     .then((user) => {
       if (!user) {
         res.status(404).send({ message: 'User ID not found' });
@@ -35,6 +36,7 @@ const getUserId = (req, res) =>
     .catch(() =>
       res.status(500).send({ message: 'Requested resource not found' })
     );
+};
 
 const updateUserInfo = (req, res) => {
   const { _id } = req.user;
@@ -90,19 +92,6 @@ const updateUserAvatar = (req, res) => {
       }
     });
 };
-
-//const updateUserData = (res, req) => {
-
-//}
-//const updateFields = ['name', 'about'];
-
-//const updateUserInfo = (req, res) => {
-//User.findByIdAndUpdate(req.params.id)
-//}
-
-//const updateUserAvatar = (req, res) => {
-//User.findByIdAndUpdate(req.params.id)
-//}
 
 module.exports = {
   createUser,

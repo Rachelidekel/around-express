@@ -4,6 +4,12 @@
     "no-underscore-dangle": ["off", { "allow": ["id"] }],
     "implicit-arrow-linebreak": "off",
     "function-paren-newline": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "line break": "off",
+    "indentation": "off",
+    "linebreak": "off",
+    "operator-linebreak": "off",
+    "no-useless-escape": "off",
+    "object-curly-newline": "off"
   }
 }
